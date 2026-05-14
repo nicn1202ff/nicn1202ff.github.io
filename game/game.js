@@ -48,7 +48,6 @@ function generateLevel(level) {
                 x: i,
                 y: canvas.height - 80,
                 width: 30,
-                height: 80,
                 type: 'spike',
                 height: 40 + Math.random() * 20
             });
@@ -68,8 +67,8 @@ function generateLevel(level) {
     obstacles.push({
         x: 3000 + level * 500,
         y: canvas.height - 100,
-        width: 50,
-        height: 50,
+        width: 80,
+        height: 80,
         type: 'goal'
     });
 }
@@ -150,9 +149,8 @@ function update() {
         if (playerVelocity > 0 &&
             player.y + player.height >= platform.y &&
             player.y + player.height <= platform.y + platform.height + 10 &&
-            player.x + player.width > platform.x &&
-            player.x < platform.x + platform.width &&
-            scrollOffset > platform.x - player.x - 100) {
+            player.x + player.width > platform.x - scrollOffset &&
+            player.x < platform.x - scrollOffset + platform.width) {
             
             playerVelocity = -12;
             isJumping = true;
@@ -169,19 +167,23 @@ function update() {
 
     // Check obstacle collisions
     for (let obstacle of obstacles) {
+        const obstacleScreenX = obstacle.x - scrollOffset;
+        
         if (obstacle.type === 'spike') {
-            if (player.x + player.width > obstacle.x - scrollOffset + player.x &&
-                player.x < obstacle.x - scrollOffset + player.x + obstacle.width &&
-                player.y + player.height > canvas.height - obstacle.height) {
+            if (playerVelocity > 0 &&
+                player.x + player.width > obstacleScreenX &&
+                player.x < obstacleScreenX + obstacle.width &&
+                player.y + player.height >= canvas.height - 60 - obstacle.height &&
+                player.y + player.height <= canvas.height - 60) {
                 
                 createExplosion(player.x + player.width / 2, player.y + player.height / 2);
                 endLevel();
                 return;
             }
         } else if (obstacle.type === 'goal') {
-            if (player.x + player.width > obstacle.x - scrollOffset + player.x &&
-                player.x < obstacle.x - scrollOffset + player.x + obstacle.width &&
-                player.y + player.height > obstacle.y) {
+            if (player.x + player.width > obstacleScreenX &&
+                player.x < obstacleScreenX + obstacle.width &&
+                player.y + player.height > canvas.height - 100) {
                 
                 completeLevel();
                 return;
@@ -277,7 +279,7 @@ function draw() {
     // Draw platforms
     ctx.fillStyle = '#00ff00';
     for (let platform of platforms) {
-        const screenX = platform.x - scrollOffset + player.x;
+        const screenX = platform.x - scrollOffset;
         if (screenX > -100 && screenX < canvas.width + 100) {
             ctx.shadowColor = 'rgba(0, 255, 0, 0.8)';
             ctx.shadowBlur = 10;
@@ -288,7 +290,7 @@ function draw() {
 
     // Draw obstacles
     for (let obstacle of obstacles) {
-        const screenX = obstacle.x - scrollOffset + player.x;
+        const screenX = obstacle.x - scrollOffset;
         
         if (screenX > -100 && screenX < canvas.width + 100) {
             if (obstacle.type === 'spike') {
@@ -307,7 +309,7 @@ function draw() {
                 ctx.fillStyle = '#ffff00';
                 ctx.shadowColor = 'rgba(255, 255, 0, 0.8)';
                 ctx.shadowBlur = 15;
-                ctx.fillRect(screenX, obstacle.y, obstacle.width, obstacle.height);
+                ctx.fillRect(screenX, canvas.height - 100, obstacle.width, obstacle.height);
             }
         }
     }
