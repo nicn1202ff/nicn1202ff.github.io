@@ -49,14 +49,57 @@
             margin-top: 20px;
             opacity: 0.7;
         }
+        /* Layout for the header to keep title and nav tidy */
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .top-nav {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Puts space between the buttons */
+        }
+
+        /* Styling the buttons */
+        .nav-btn {
+            padding: 8px 16px;
+            background-color: #333; /* Dark grey */
+            color: white !important;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            border: 1px solid #444;
+        }
+
+        /* Specific style for the Forum button to make it pop */
+        .forum-style {
+            background-color: #00d2ff; /* Bright blue */
+            border-color: #00a8cc;
+        }
+
+        .nav-btn:hover {
+            background-color: #ff007c; /* Pink hover effect */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Welcome to my site!</h1>
-        <p>A gamer's corner of the web.</p>
+        <div class="header-content">
+            <h1>Welcome to my site!</h1>
+            <p>umm site ig</p>
+        </div>
+            <nav class="top-nav">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="https://nicn1202.boards.net" target="_blank" class="nav-btn forum-style">Forum</a>
+        </nav>
     </header>
+
 
     <main>
         <section>
