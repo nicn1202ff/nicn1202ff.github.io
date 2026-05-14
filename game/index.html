@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Shooter - HTML5 Game</title>
+    <title>Geometry Dash - HTML5 Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="game-container">
         <div class="hud">
-            <div class="score">Score: <span id="score">0</span></div>
-            <div class="lives">Lives: <span id="lives">3</span></div>
-            <div class="level">Level: <span id="level">1</span></div>
+            <div class="level-display">Level: <span id="level">1</span></div>
+            <div class="attempts">Attempts: <span id="attempts">1</span></div>
         </div>
-        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <canvas id="gameCanvas" width="1000" height="600"></canvas>
         <div class="game-over" id="gameOver">
             <div class="game-over-content">
-                <h1>Game Over</h1>
-                <p>Final Score: <span id="finalScore">0</span></p>
-                <button onclick="location.reload()">Play Again</button>
+                <h1 id="gameOverTitle">Level Complete!</h1>
+                <p id="gameOverMessage">Great job!</p>
+                <button onclick="restartLevel()">Restart Level</button>
+                <button onclick="nextLevel()">Next Level</button>
             </div>
         </div>
         <div class="instructions" id="instructions">
-            <h2>Space Shooter</h2>
-            <p>Use arrow keys or WASD to move</p>
-            <p>Click or press SPACE to shoot</p>
-            <p>Destroy all enemies to advance to the next level</p>
+            <h2>Geometry Dash</h2>
+            <p>Click or press SPACE to jump</p>
+            <p>Avoid obstacles and reach the end!</p>
+            <p>Each level gets faster and harder</p>
             <button onclick="startGame()">Start Game</button>
         </div>
     </div>
