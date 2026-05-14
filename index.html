@@ -92,6 +92,11 @@
     <header>
         <nav class="top-nav">
             <a href="index.html" class="nav-btn">Home</a>
+            <a href="#tools" class="nav-btn">Tools</a> <a href="http://nicn1202.boards.net" target="_blank" class="nav-btn forum-style">Forum</a>
+        </nav>
+
+        <nav class="top-nav">
+            <a href="index.html" class="nav-btn">Home</a>
             <a href="https://nicn1202.boards.net" target="_blank" class="nav-btn forum-style">Forum</a>
         </nav>
         <div class="header-content">
@@ -114,6 +119,44 @@
                 <li><a href="https://www.wikipedia.org" target="_blank">Wikipedia</a></li>
             </ul>
         </section>
+        <section id="tools">
+            <h2>Tools</h2>
+            <div class="tool-box">
+            <h3>Bookmarklet Maker</h3>
+            <p>Paste your JS code below to turn it into a bookmarklet!</p>
+        
+            <textarea id="jsInput" placeholder="alert('Hello World!');" rows="5" style="width: 100%; border-radius: 5px;"></textarea>
+        
+            <br><br>
+        
+            <button onclick="makeBookmarklet()" class="nav-btn">Generate</button>
+        
+            <div id="resultArea" style="margin-top: 20px; display: none;">
+                    <p>Drag this button to your bookmarks bar:</p>
+                    <a id="bookmarkletLink" href="" class="nav-btn forum-style">My Bookmarklet</a>
+                </div>
+            </div>
+        </section>
+
+        <script>
+        function makeBookmarklet() {
+            const input = document.getElementById('jsInput').value;
+            const resultArea = document.getElementById('resultArea');
+            const link = document.getElementById('bookmarkletLink');
+
+            if (input.trim() === "") {
+                alert("Please enter some code first!");
+                return;
+           }
+
+                    // This converts the code into a "URL friendly" format
+            const encodedCode = "javascript:" + encodeURIComponent("(function(){" + input + "})();");
+
+            link.href = encodedCode;
+            resultArea.style.display = "block";
+        }
+        </script>
+
     </main>
 
     <footer>
