@@ -6,34 +6,57 @@
     <title>Nicky's site!!</title>
     <link rel="icon" type="image/png" href="images/IMG_0045 2.png">
     <style>
-        /* This targets the whole page */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1a2e; /* Dark blue/black background */
-            color: #e9e9e9;           /* Light text color */
+            background-color: #1a1a2e;
+            color: #e9e9e9;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
         }
 
-        /* Styling the header */
         header {
             text-align: center;
-            color: #00d2ff; /* Neon blue */
+            padding-bottom: 20px;
         }
 
-        /* Making links look like buttons */
-        a {
-            color: #ff007c; /* Hot pink */
+        /* Styling your profile picture */
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%; /* Makes it a circle */
+            border: 3px solid #00d2ff;
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+
+        h1 { color: #00d2ff; margin: 5px 0; }
+
+        .top-nav {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            padding: 8px 16px;
+            background-color: #334155;
+            color: white !important;
             text-decoration: none;
-            font-weight: bold;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            border: 1px solid #444;
         }
 
-        a:hover {
-            text-shadow: 0 0 10px #ff007c;
+        .forum-style { background-color: #00d2ff; }
+
+        .nav-btn:hover {
+            background-color: #ff007c;
+            transform: translateY(-2px);
         }
 
-        /* Adding a container for the content */
         main {
             max-width: 600px;
             margin: auto;
@@ -49,51 +72,12 @@
             margin-top: 20px;
             opacity: 0.7;
         }
-        /* Layout for the header to keep title and nav tidy */
-        header {
-            text-align: center;
-            padding-bottom: 20px;
-        }
-
-        .top-nav {
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 15px; /* Puts space between the buttons */
-        }
-
-        /* Styling the buttons */
-        .nav-btn {
-            padding: 8px 16px;
-            background-color: #00d2ff; /* Dark grey */
-            color: white !important;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            transition: 0.3s;
-            border: 1px solid #444;
-        }
-        .nav-btn:hover {
-            background-color: #ff007c;
-            transform: translateY(-2px);
-        }
-
-        /* Specific style for the Forum button to make it pop */
-        .forum-style {
-            background-color: #00d2ff; /* Bright blue */
-            border-color: #00a8cc;
-        }
-
-        .nav-btn:hover {
-            background-color: #ff007c; /* Pink hover effect */
-            transform: translateY(-2px); /* Slight lift effect */
-        }
-
     </style>
 </head>
 <body>
 
     <header>
+        <img src="images/IMG_0045 2.png" alt="Nicky's PFP" class="profile-pic">
         <div class="header-content">
             <h1>Welcome to my site!</h1>
             <p>umm site ig</p>
@@ -106,7 +90,6 @@
         </nav>
     </header>
 
-
     <main>
         <section>
             <h2>About me</h2>
@@ -116,48 +99,10 @@
         <section>
             <h2>Links</h2>
             <ul>
-                <li><a href="https://www.google.com" target="_blank">Google</a></li>
-                <li><a href="https://www.wikipedia.org" target="_blank">Wikipedia</a></li>
+                <li><a href="https://www.google.com" target="_blank" style="color: #ff007c;">Google</a></li>
+                <li><a href="https://www.wikipedia.org" target="_blank" style="color: #ff007c;">Wikipedia</a></li>
             </ul>
         </section>
-        <section id="tools">
-            <h2>Tools</h2>
-            <div class="tool-box">
-            <h3>Bookmarklet Maker</h3>
-            <p>Paste your JS code below to turn it into a bookmarklet!</p>
-        
-            <textarea id="jsInput" placeholder="alert('Hello World!');" rows="5" style="width: 100%; border-radius: 5px;"></textarea>
-        
-            <br><br>
-        
-            <button onclick="makeBookmarklet()" class="nav-btn">Generate</button>
-        
-            <div id="resultArea" style="margin-top: 20px; display: none;">
-                    <p>Drag this button to your bookmarks bar:</p>
-                    <a id="bookmarkletLink" href="" class="nav-btn forum-style">My Bookmarklet</a>
-                </div>
-            </div>
-        </section>
-
-        <script>
-        function makeBookmarklet() {
-            const input = document.getElementById('jsInput').value;
-            const resultArea = document.getElementById('resultArea');
-            const link = document.getElementById('bookmarkletLink');
-
-            if (input.trim() === "") {
-                alert("Please enter some code first!");
-                return;
-           }
-
-                    // This converts the code into a "URL friendly" format
-            const encodedCode = "javascript:" + encodeURIComponent("(function(){" + input + "})();");
-
-            link.href = encodedCode;
-            resultArea.style.display = "block";
-        }
-        </script>
-
     </main>
 
     <footer>
